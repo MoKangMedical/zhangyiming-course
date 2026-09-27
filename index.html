@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>张一鸣的思想书架 —— 100本经典，构建创业者的操作系统</title>
+<meta name="description" content="100节系统课程，拆解100本经典著作。从乔布斯传到人类简史，从禅者的初心到三体——每一本书都是一行人生算法。康波研究院出品。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#08080c;--shelf:#1a1410;--gold:#d4a853;--gold-dim:#b8943e;--gold-glow:rgba(212,168,83,.18);
+--card:#15151c;--text:#e8e3d9;--text2:#a09888;--text3:#6b6458;--border:#252228;
+--spine-prod:#d4a853;--spine-mgmt:#4f8de0;--spine-mind:#9b6fe8;--spine-learn:#3cb878;
+--spine-world:#3aa8c8;--spine-tech:#60a5fa;--spine-biz:#f59e0b;--spine-human:#e8795e;
+--spine-lead:#ec4899;--spine-sum:#e8a840;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Noto Serif SC',Georgia,'Source Han Serif SC',serif;line-height:1.8;overflow-x:hidden}
+.bg-ambient{
+position:fixed;inset:0;z-index:0;pointer-events:none;
+background:radial-gradient(ellipse at 50% 0%,rgba(212,168,83,.07) 0%,transparent 60%),
+radial-gradient(ellipse at 85% 20%,rgba(155,111,232,.04) 0%,transparent 50%),
+radial-gradient(ellipse at 15% 70%,rgba(58,168,200,.04) 0%,transparent 50%);
+}
+.particles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.particle{position:absolute;background:var(--gold);border-radius:50%;opacity:0;animation:floatUp var(--dur) var(--delay) infinite ease-out}
+@keyframes floatUp{
+0%{transform:translateY(100vh) scale(0);opacity:0}
+10%{opacity:0.6}
+40%{opacity:0.3}
+100%{transform:translateY(-10vh) scale(1.2);opacity:0}
+}
+.nav{position:sticky;top:0;z-index:100;background:rgba(8,8,12,.92);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border-bottom:1px solid rgba(212,168,83,.08);padding:.9rem 2.5rem;display:flex;justify-content:space-between;align-items:center}
+.nav a{color:var(--text2);text-decoration:none;margin-left:1.5rem;font-size:.85rem;font-family:Inter,sans-serif;transition:color .25s;letter-spacing:.02em}
+.nav a:hover,.nav a.active{color:var(--gold)}
+.nav .logo{color:var(--gold);font-size:1.1rem;font-weight:700;letter-spacing:.03em;font-family:'Noto Serif SC',serif}
+.scroll-progress{position:fixed;top:0;left:0;height:2.5px;background:linear-gradient(90deg,var(--gold),#e8a840,var(--gold));z-index:200;transition:width .2s;border-radius:0 2px 2px 0}
+.perspective-stage{perspective:1400px;position:relative;z-index:1}
+.container{max-width:1200px;margin:0 auto;padding:2rem 2rem 5rem}
+.hero{text-align:center;padding:5rem 2rem 3rem;position:relative}
+.hero-icon{font-size:4rem;margin-bottom:.8rem;animation:gentleFloat 3s ease-in-out infinite;display:inline-block;filter:drop-shadow(0 0 30px rgba(212,168,83,.25))}
+@keyframes gentleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hero h1{font-size:3rem;color:var(--gold);margin-bottom:.5rem;line-height:1.25;font-weight:700;letter-spacing:.04em;text-shadow:0 0 60px rgba(212,168,83,.15)}
+.hero .subtitle{font-size:1.1rem;color:var(--text2);margin-bottom:1rem;max-width:650px;margin-left:auto;margin-right:auto;line-height:1.7}
+.hero .quote{color:var(--text3);font-style:italic;font-size:.9rem;margin:1.2rem 0;padding:.5rem 2rem;border-left:2px solid var(--gold);border-right:2px solid var(--gold);display:inline-block}
+.hero .stats{display:flex;justify-content:center;gap:3rem;margin:2rem 0;flex-wrap:wrap}
+.hero .stat{text-align:center}
+.hero .stat-num{font-size:2.5rem;color:var(--gold);font-weight:700;font-family:Inter,sans-serif;line-height:1;text-shadow:0 0 30px rgba(212,168,83,.2)}
+.hero .stat-label{font-size:.78rem;color:var(--text3);margin-top:.3rem;font-family:Inter,sans-serif;letter-spacing:.05em;text-transform:uppercase}
+.search-wrap{max-width:480px;margin:2rem auto;position:relative;z-index:2}
+.search-wrap input{width:100%;padding:.8rem 1.2rem;background:rgba(21,21,28,.7);border:1px solid var(--border);border-radius:12px;color:var(--text);font-size:.9rem;outline:none;transition:all .3s;font-family:Inter,sans-serif;backdrop-filter:blur(8px)}
+.search-wrap input:focus{border-color:var(--gold);box-shadow:0 0 20px var(--gold-glow)}
+.search-wrap input::placeholder{color:var(--text3)}
+.progress-wrap{max-width:480px;margin:0 auto 2rem}
+.progress-bar{background:var(--border);border-radius:6px;height:4px;overflow:hidden}
+.progress-bar .fill{height:100%;background:linear-gradient(90deg,var(--spine-learn),var(--gold));border-radius:6px;transition:width .5s ease}
+.progress-text{text-align:center;color:var(--text3);font-size:.78rem;margin-top:.5rem;font-family:Inter,sans-serif}
+.shelf-title{font-size:1.15rem;color:var(--gold);margin:3rem 0 1rem;display:flex;align-items:center;gap:.5rem;font-weight:600;letter-spacing:.03em}
+.shelf-title .badge{font-size:.68rem;padding:.2rem .6rem;border-radius:4px;font-weight:500;font-family:Inter,sans-serif;letter-spacing:.05em}
+.badge-prod{background:rgba(212,168,83,.15);color:var(--spine-prod)}
+.badge-mgmt{background:rgba(79,141,224,.15);color:var(--spine-mgmt)}
+.badge-mind{background:rgba(155,111,232,.15);color:var(--spine-mind)}
+.badge-learn{background:rgba(60,184,120,.15);color:var(--spine-learn)}
+.badge-world{background:rgba(58,168,200,.15);color:var(--spine-world)}
+.badge-tech{background:rgba(96,165,250,.15);color:var(--spine-tech)}
+.badge-biz{background:rgba(245,158,11,.15);color:var(--spine-biz)}
+.badge-human{background:rgba(232,121,94,.15);color:var(--spine-human)}
+.badge-lead{background:rgba(236,72,153,.15);color:var(--spine-lead)}
+.badge-sum{background:rgba(232,168,64,.2);color:var(--spine-summary)}
+.shelf-row{position:relative;margin-bottom:1.2rem;padding-bottom:1.2rem}
+.shelf-row::after{content:'';position:absolute;bottom:0;left:0;right:0;height:6px;background:linear-gradient(to bottom,rgba(212,168,83,.1),transparent);border-radius:2px;pointer-events:none}
+.books-grid{display:flex;flex-wrap:wrap;gap:.6rem;align-items:flex-end;padding-bottom:.3rem}
+.book-wrap{perspective:800px;cursor:pointer;transition:transform .3s ease}
+.book-wrap:hover{transform:translateY(-5px);z-index:10}
+.book{width:92px;height:148px;position:relative;transform-style:preserve-3d;transition:transform .4s cubic-bezier(.23,1,.32,1)}
+.book-wrap:hover .book{transform:rotateY(-10deg) rotateX(4deg)}
+.book-spine{position:absolute;left:0;top:0;bottom:0;width:13px;background:var(--spine-color);border-radius:2px 0 0 2px;transform:rotateY(90deg);transform-origin:left center;box-shadow:inset -2px 0 6px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;writing-mode:vertical-lr;font-size:.48rem;font-weight:600;color:rgba(255,255,255,.9);padding:.25rem 0;letter-spacing:.06em;font-family:'Noto Serif SC',serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.book-pages{position:absolute;right:0;top:1px;bottom:1px;width:4px;background:linear-gradient(to right,#f0ede5,#e8e4d8,#ddd8c8,#e8e4d8);border-radius:0 2px 2px 0;box-shadow:inset 1px 0 2px rgba(0,0,0,.1)}
+.book-cover{position:absolute;left:13px;right:4px;top:0;bottom:0;background:var(--cover-color);border-radius:0 2px 2px 0;box-shadow:1px 1px 5px rgba(0,0,0,.25),inset 0 0 35px rgba(0,0,0,.15);display:flex;flex-direction:column;padding:.7rem .55rem;overflow:hidden}
+.book-cover .cover-num{font-family:Inter,sans-serif;font-size:.58rem;font-weight:600;color:var(--spine-color);margin-bottom:.3rem;letter-spacing:.08em;opacity:.8}
+.book-cover .cover-title{font-size:.7rem;font-weight:700;color:var(--text);line-height:1.3;flex:1;overflow:hidden;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical}
+.book-cover .cover-author{font-size:.52rem;color:var(--text3);margin-top:auto;font-family:Inter,sans-serif}
+.book-wrap:hover .book-cover{box-shadow:1px 1px 5px rgba(0,0,0,.25),inset 0 0 35px rgba(0,0,0,.15),0 0 20px var(--glow-color)}
+.book-check{position:absolute;top:.3rem;right:1rem;z-index:5;width:18px;height:18px;border:1.5px solid rgba(212,168,83,.3);border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.55rem;color:transparent;transition:all .25s;font-family:Inter,sans-serif}
+.book-check.done{background:var(--spine-learn);border-color:var(--spine-learn);color:#fff}
+.book-link{position:absolute;inset:0;z-index:3}
+.spine-prod{--spine-color:var(--spine-prod);--cover-color:#1c1810;--glow-color:rgba(212,168,83,.25)}
+.spine-mgmt{--spine-color:var(--spine-mgmt);--cover-color:#101520;--glow-color:rgba(79,141,224,.25)}
+.spine-mind{--spine-color:var(--spine-mind);--cover-color:#161020;--glow-color:rgba(155,111,232,.25)}
+.spine-learn{--spine-color:var(--spine-learn);--cover-color:#101a14;--glow-color:rgba(60,184,120,.25)}
+.spine-world{--spine-color:var(--spine-world);--cover-color:#0f1a1c;--glow-color:rgba(58,168,200,.25)}
+.spine-tech{--spine-color:var(--spine-tech);--cover-color:#0f1620;--glow-color:rgba(96,165,250,.25)}
+.spine-biz{--spine-color:var(--spine-biz);--cover-color:#1a140c;--glow-color:rgba(245,158,11,.25)}
+.spine-human{--spine-color:var(--spine-human);--cover-color:#1a1210;--glow-color:rgba(232,121,94,.25)}
+.spine-lead{--spine-color:var(--spine-lead);--cover-color:#1a1018;--glow-color:rgba(236,72,153,.25)}
+.spine-sum{--spine-color:var(--spine-sum);--cover-color:#1c160c;--glow-color:rgba(232,168,64,.25)}
+.footer{text-align:center;padding:3rem 2rem;border-top:1px solid var(--border);margin-top:3rem;color:var(--text3);font-size:.8rem;font-family:Inter,sans-serif}
+.footer a{color:var(--gold);text-decoration:none}
+@media(max-width:768px){.hero h1{font-size:1.8rem}.hero-icon{font-size:2.8rem}.hero .stats{gap:1.5rem}.hero .stat-num{font-size:1.8rem}.books-grid{justify-content:center}.book{width:78px;height:128px}.book-spine{width:10px;font-size:.4rem}.book-cover{left:10px;right:3px;padding:.5rem .4rem}.book-cover .cover-title{font-size:.6rem}.nav{padding:.8rem 1.2rem}.nav a{margin-left:.7rem;font-size:.75rem}.container{padding:1rem 1rem 3rem}}
+@media(prefers-reduced-motion:reduce){.hero-icon{animation:none}.particle{animation:none;display:none}}
+</style>
+</head>
+<body>
+<div class="bg-ambient"></div>
+<div class="particles" id="particles"></div>
+<div class="scroll-progress" id="scrollBar" style="width:0%"></div>
+<nav class="nav">
+<div><a href="index.html" class="logo">📚 张一鸣的思想书架</a></div>
+<div><a href="index.html" class="active">书橱首页</a><a href="deep-research.html">🔬 深度研究</a><a href="lesson1.html">第1课</a><a href="lesson50.html">第50课</a><a href="lesson100.html">第100课</a></div>
+</nav>
+<div class="perspective-stage"><div class="container">
+<div class="hero">
+<div class="hero-icon">📚</div>
+<h1>张一鸣的思想书架</h1>
+<p class="subtitle">100节系统课程，拆解100本经典著作。从产品到管理，从认知到格局——每一本书都是创业者操作系统的核心模块。</p>
+<p class="quote">「读传记让我更有耐心——看到人在巨大浪潮中的变化。」</p>
+<div class="stats">
+<div class="stat"><div class="stat-num">100</div><div class="stat-label">核心课程</div></div>
+<div class="stat"><div class="stat-num">10</div><div class="stat-label">主题模块</div></div>
+<div class="stat"><div class="stat-num">300+</div><div class="stat-label">思考练习</div></div>
+<div class="stat"><div class="stat-num">≈25h</div><div class="stat-label">深度内容</div></div>
+<div style="margin-top:1rem"><a href="deep-research.html" style="color:var(--gold);text-decoration:none;font-size:.9rem;border:1px solid var(--gold);padding:.5rem 1.5rem;border-radius:20px;transition:all .3s;font-family:Inter,sans-serif">🔬 阅读张一鸣深度研究 →</a></div>
+</div>
+</div>
+<div class="search-wrap"><input type="text" id="searchInput" placeholder="🔍 搜索课程（如：乔布斯、反脆弱、人类简史…）" oninput="filterCourses()"></div>
+<div class="progress-wrap">
+<div class="progress-bar"><div class="fill" id="progressFill" style="width:0%"></div></div>
+<div class="progress-text">📊 学习进度：<span id="progressPct">0</span>/100 课完成（<span id="progressDone">0%</span>）</div>
+</div>
+<div id="shelves"></div>
+<div class="footer">
+<p>康波研究院出品 · 张一鸣的思想书架</p>
+<p style="margin-top:.3rem">© 2026 Kangbo Academy · <a href="https://kangboacademy.cn">kangboacademy.cn</a></p>
+</div>
+</div></div>
+<script>
+var COURSES = [
+{n:1,m:1,t:"《史蒂夫·乔布斯传》",d:"不容平庸的极致标准——张一鸣产品观的基石",a:"沃尔特·艾萨克森",r:18},
+{n:2,m:1,t:"《活法》",d:"务实的浪漫——全力以赴的专注哲学",a:"稻盛和夫",r:18},
+{n:3,m:1,t:"《从0到1》",d:"创造而非竞争——张一鸣的市场哲学",a:"彼得·蒂尔",r:18},
+{n:4,m:1,t:"《创新者的窘境》",d:"大公司被颠覆的规律——张一鸣最警惕的陷阱",a:"克里斯坦森",r:18},
+{n:5,m:1,t:"《精益创业》",d:"先小验证再押大注——字节产品迭代的方法论",a:"埃里克·莱斯",r:18},
+{n:6,m:1,t:"《启示录》",d:"打造用户热爱的产品——产品经理的圣经",a:"Marty Cagan",r:18},
+{n:7,m:1,t:"《设计心理学》",d:"好设计是对人性的深刻理解",a:"唐纳德·诺曼",r:16},
+{n:8,m:1,t:"《上瘾》",d:"让用户养成使用习惯的产品逻辑",a:"尼尔·埃亚尔",r:16},
+{n:9,m:1,t:"《黑客与画家》",d:"程序员思维与创造力的本质",a:"保罗·格雷厄姆",r:17},
+{n:10,m:1,t:"《简约至上》",d:"交互设计的四策略——删除组织隐藏转移",a:"Giles Colborne",r:14},
+{n:11,m:2,t:"《高效能人士的七个习惯》",d:"性格塑造先于成功——七习惯如何演化为字节范儿",a:"史蒂芬·柯维",r:18},
+{n:12,m:2,t:"《卓有成效的管理者》",d:"聚焦要事的底层逻辑——德鲁克的管理有效性",a:"彼得·德鲁克",r:18},
+{n:13,m:2,t:"《赢》",d:"坦诚透明的组织文化——如何驱逐向上管理",a:"杰克·韦尔奇",r:18},
+{n:14,m:2,t:"《重新定义公司》",d:"信息透明的系统设计——谷歌如何运营",a:"埃里克·施密特",r:18},
+{n:15,m:2,t:"《奈飞文化手册》",d:"Context not Control的原型——自由与责任",a:"帕蒂·麦考德",r:18},
+{n:16,m:2,t:"《格鲁夫给经理人的第一课》",d:"英特尔的OKR之源：高产出管理",a:"安迪·格鲁夫",r:16},
+{n:17,m:2,t:"《管理的实践》",d:"现代管理学的奠基之作",a:"彼得·德鲁克",r:17},
+{n:18,m:2,t:"《第五项修炼》",d:"学习型组织的艺术与实践",a:"彼得·圣吉",r:17},
+{n:19,m:2,t:"《团队协作的五大障碍》",d:"信任是高效团队的第一块基石",a:"帕特里克·兰西奥尼",r:15},
+{n:20,m:2,t:"《首先，打破一切常规》",d:"卓越管理者的12个核心问题",a:"马库斯·白金汉",r:15},
+{n:21,m:3,t:"《少有人走的路》",d:"延迟满足的思维训练——张一鸣最核心的能力",a:"M·斯科特·派克",r:18},
+{n:22,m:3,t:"《当下的力量》",d:"平常心哲学——在压力下保持冷静",a:"埃克哈特·托利",r:18},
+{n:23,m:3,t:"《原则》",d:"系统化决策方法论——把经验编译成原则",a:"瑞·达利欧",r:18},
+{n:24,m:3,t:"《思考，快与慢》",d:"认知偏差的识别——张一鸣的防错机制",a:"丹尼尔·卡尼曼",r:18},
+{n:25,m:3,t:"《禅者的初心》",d:"初心与专注——平常心的禅宗源头",a:"铃木俊隆",r:18},
+{n:26,m:3,t:"《反脆弱》",d:"从混乱和不确定性中获益",a:"纳西姆·塔勒布",r:17},
+{n:27,m:3,t:"《黑天鹅》",d:"如何应对不可预知的未来",a:"纳西姆·塔勒布",r:17},
+{n:28,m:3,t:"《影响力》",d:"说服的六大心理学原理",a:"罗伯特·西奥迪尼",r:16},
+{n:29,m:3,t:"《象与骑象人》",d:"幸福的假设——理性与情感的古老博弈",a:"乔纳森·海特",r:16},
+{n:30,m:3,t:"《清醒思考的艺术》",d:"52种思维错误的清单",a:"罗尔夫·多贝里",r:15},
+{n:31,m:4,t:"《如何阅读一本书》",d:"深度阅读的方法论——张一鸣的信息输入系统",a:"莫提默·艾德勒",r:18},
+{n:32,m:4,t:"《从一到无穷大》",d:"跨学科思维的启蒙——科学思维的童年种子",a:"乔治·伽莫夫",r:18},
+{n:33,m:4,t:"《推荐系统实践》",d:"算法推荐的工程落地——今日头条的技术圣经",a:"项亮",r:18},
+{n:34,m:4,t:"《深度工作》",d:"信息时代的专注力——对抗信息过载的武器",a:"卡尔·纽波特",r:18},
+{n:35,m:4,t:"《掌控习惯》",d:"微习惯的巨大力量——延迟满足的习惯化实现",a:"詹姆斯·克利尔",r:18},
+{n:36,m:4,t:"《刻意练习》",d:"如何从新手到大师——1万小时定律的真相",a:"安德斯·艾利克森",r:17},
+{n:37,m:4,t:"《学习之道》",d:"科学用脑——专注模式与发散模式的切换",a:"芭芭拉·奥克利",r:16},
+{n:38,m:4,t:"《认知天性》",d:"让学习变得轻而易举的心理学规律",a:"彼得·布朗",r:16},
+{n:39,m:4,t:"《穷查理宝典》",d:"多元思维模型——把世界装进你的格子",a:"查理·芒格",r:17},
+{n:40,m:4,t:"《超速学习》",d:"一年完成MIT四年课程的实战方法论",a:"斯科特·杨",r:15},
+{n:41,m:5,t:"《人类简史》",d:"文明的逻辑——张一鸣格局观的宏大叙事来源",a:"尤瓦尔·赫拉利",r:18},
+{n:42,m:5,t:"《枪炮、病菌与钢铁》",d:"地理与历史的底层逻辑——理解全球化差异",a:"贾雷德·戴蒙德",r:18},
+{n:43,m:5,t:"《三体》",d:"文明尺度的想象力——长期主义的世界观来源",a:"刘慈欣",r:18},
+{n:44,m:5,t:"《闪电式扩张》",d:"全球化的底层算法——字节扩张的核心方法论",a:"里德·霍夫曼",r:18},
+{n:45,m:5,t:"《创业维艰》",d:"面对不确定性的勇气——至暗时刻的精神支撑",a:"本·霍洛维茨",r:18},
+{n:46,m:5,t:"《未来简史》",d:"从智人到智神——AI时代的生存法则",a:"尤瓦尔·赫拉利",r:17},
+{n:47,m:5,t:"《今日简史》",d:"21世纪的21个重大议题",a:"尤瓦尔·赫拉利",r:17},
+{n:48,m:5,t:"《规模》",d:"复杂世界的简单法则——万物生长衰亡的数学",a:"杰弗里·韦斯特",r:17},
+{n:49,m:5,t:"《生命3.0》",d:"AI时代人类的进化与终极命运",a:"迈克斯·泰格马克",r:16},
+{n:50,m:5,t:"《奇点临近》",d:"当计算机智能超越人类——技术奇点的预言",a:"雷·库兹韦尔",r:16},
+{n:51,m:6,t:"《算法导论》",d:"计算机科学的基石——理解算法的思维方式",a:"Thomas Cormen",r:20},
+{n:52,m:6,t:"《代码大全》",d:"软件构建的完整指南——从编码到架构",a:"Steve McConnell",r:18},
+{n:53,m:6,t:"《人月神话》",d:"软件工程管理的永恒经典——没有银弹",a:"Fred Brooks",r:16},
+{n:54,m:6,t:"《设计数据密集型应用》",d:"系统设计者的必读之书",a:"Martin Kleppmann",r:18},
+{n:55,m:6,t:"《计算机程序的构造和解释》",d:"MIT经典——编程的本质是抽象",a:"Harold Abelson",r:18},
+{n:56,m:6,t:"《UNIX编程艺术》",d:"简单、清晰、模块化——Unix哲学",a:"Eric Raymond",r:16},
+{n:57,m:6,t:"《黑客》",d:"计算机革命的英雄史诗",a:"Steven Levy",r:16},
+{n:58,m:6,t:"《信息简史》",d:"从非洲鼓语到人工智能——信息如何塑造世界",a:"詹姆斯·格雷克",r:17},
+{n:59,m:6,t:"《浪潮之巅》",d:"IT产业的兴衰规律——站在浪潮之巅看未来",a:"吴军",r:16},
+{n:60,m:6,t:"《数学之美》",d:"把数学变成直觉——搜索引擎背后的数学",a:"吴军",r:15},
+{n:61,m:7,t:"《竞争战略》",d:"五力模型——分析行业结构的经典框架",a:"迈克尔·波特",r:17},
+{n:62,m:7,t:"《创新者的解答》",d:"创造和维持成功的增长",a:"克里斯坦森",r:17},
+{n:63,m:7,t:"《蓝海战略》",d:"开创无人竞争的市场空间",a:"W·钱·金",r:16},
+{n:64,m:7,t:"《跨越鸿沟》",d:"颠覆性产品的市场推广法则",a:"杰弗里·摩尔",r:16},
+{n:65,m:7,t:"《商业模式新生代》",d:"一张画布画出你的商业模式",a:"奥斯特瓦德",r:15},
+{n:66,m:7,t:"《定位》",d:"在用户心智中占据一个词",a:"艾·里斯",r:15},
+{n:67,m:7,t:"《长尾理论》",d:"为什么商业的未来是小众市场",a:"克里斯·安德森",r:15},
+{n:68,m:7,t:"《免费》",d:"商业的未来——免费模式如何重塑行业",a:"克里斯·安德森",r:15},
+{n:69,m:7,t:"《平台革命》",d:"网络市场如何改变经济",a:"杰奥夫雷·帕克",r:16},
+{n:70,m:7,t:"《智能商业》",d:"网络协同与数据智能的双螺旋",a:"曾鸣",r:16},
+{n:71,m:8,t:"《论语》",d:"中国人的精神源代码——入世与修身的根基",a:"孔子",r:18},
+{n:72,m:8,t:"《道德经》",d:"无为而治——东方智慧的最高境界",a:"老子",r:17},
+{n:73,m:8,t:"《孙子兵法》",d:"不战而屈人之兵——竞争的最高境界",a:"孙武",r:16},
+{n:74,m:8,t:"《国富论》",d:"看不见的手——市场经济的圣经",a:"亚当·斯密",r:18},
+{n:75,m:8,t:"《资本论》",d:"理解资本主义的运行逻辑",a:"卡尔·马克思",r:18},
+{n:76,m:8,t:"《规训与惩罚》",d:"权力如何塑造现代人的灵魂",a:"米歇尔·福柯",r:17},
+{n:77,m:8,t:"《正义论》",d:"什么是公平——当代政治哲学的基石",a:"约翰·罗尔斯",r:17},
+{n:78,m:8,t:"《存在与时间》",d:"人如何存在于世界之中",a:"海德格尔",r:18},
+{n:79,m:8,t:"《美丽新世界》",d:"娱乐至死的反乌托邦预言",a:"赫胥黎",r:15},
+{n:80,m:8,t:"《1984》",d:"极权主义的技术分析——老大哥在看着你",a:"乔治·奥威尔",r:16},
+{n:81,m:9,t:"《影响力大师》",d:"如何改变他人的行为",a:"约瑟夫·格雷尼",r:16},
+{n:82,m:9,t:"《关键对话》",d:"高风险时刻的沟通技巧",a:"科里·帕特森",r:15},
+{n:83,m:9,t:"《非暴力沟通》",d:"用爱和理解取代攻击性对话",a:"马歇尔·卢森堡",r:15},
+{n:84,m:9,t:"《演讲的力量》",d:"TED掌门人的公共演讲秘籍",a:"克里斯·安德森",r:15},
+{n:85,m:9,t:"《人性的弱点》",d:"与人相处的永恒智慧",a:"戴尔·卡耐基",r:16},
+{n:86,m:9,t:"《高难度谈话》",d:"如何处理最棘手的对话",a:"道格拉斯·斯通",r:16},
+{n:87,m:9,t:"《驱动力》",d:"自主·专精·目的——真正驱动人的三种力量",a:"丹尼尔·平克",r:16},
+{n:88,m:9,t:"《游戏改变世界》",d:"游戏化思维如何改变现实",a:"简·麦戈尼格尔",r:15},
+{n:89,m:9,t:"《瞬间说服力》",d:"预先说服——在开口之前就赢了的艺术",a:"罗伯特·西奥迪尼",r:15},
+{n:90,m:9,t:"《最重要的事只有一件》",d:"缩小目标——聚焦才能产生突破",a:"加里·凯勒",r:14},
+{n:91,m:10,t:"张一鸣传",d:"从锦秋家园到全球帝国的25个关键时刻",a:"康波研究院",r:25},
+{n:92,m:10,t:"《腾讯传》",d:"中国互联网的进化样本——从QQ到微信帝国",a:"吴晓波",r:17},
+{n:93,m:10,t:"《阿里巴巴》",d:"马云的商业逻辑——天下没有难做的生意",a:"邓肯·克拉克",r:17},
+{n:94,m:10,t:"《华为研发》",d:"任正非的技术信仰——板凳要坐十年冷",a:"张利华",r:16},
+{n:95,m:10,t:"《小米生态链战地笔记》",d:"竹林效应的实践——100家公司的孵化方法论",a:"小米生态链",r:16},
+{n:96,m:10,t:"《一网打尽》",d:"贝佐斯与亚马逊的崛起",a:"布拉德·斯通",r:16},
+{n:97,m:10,t:"《鞋狗》",d:"耐克创始人的亲笔回忆录",a:"菲尔·奈特",r:16},
+{n:98,m:10,t:"《硅谷之火》",d:"个人计算机的诞生——改变世界的革命",a:"保罗·弗赖伯格",r:15},
+{n:99,m:10,t:"《将心注入》",d:"星巴克——杯咖啡里的商业传奇",a:"霍华德·舒尔茨",r:16},
+{n:100,m:10,t:"《终身成长》",d:"成长型思维——你的天花板由你自己打破",a:"卡罗尔·德韦克",r:18},
+];
+var MODULES = [
+{id:1,icon:"🍎",name:"产品与创新",subtitle:"打造极致产品的底层逻辑",spineClass:"spine-prod",badgeClass:"badge-prod",badgeLabel:"产品观"},
+{id:2,icon:"🏢",name:"管理与组织",subtitle:"高效组织的架构与运行",spineClass:"spine-mgmt",badgeClass:"badge-mgmt",badgeLabel:"管理观"},
+{id:3,icon:"🧠",name:"思维与认知",subtitle:"升级你的心智操作系统",spineClass:"spine-mind",badgeClass:"badge-mind",badgeLabel:"思维观"},
+{id:4,icon:"🔬",name:"学习与成长",subtitle:"知识的杠杆与终身成长",spineClass:"spine-learn",badgeClass:"badge-learn",badgeLabel:"学习观"},
+{id:5,icon:"🌍",name:"格局与视野",subtitle:"从文明尺度看世界",spineClass:"spine-world",badgeClass:"badge-world",badgeLabel:"格局观"},
+{id:6,icon:"💻",name:"科技与工程",subtitle:"计算机科学的思维方式",spineClass:"spine-tech",badgeClass:"badge-tech",badgeLabel:"科技观"},
+{id:7,icon:"📊",name:"商业与战略",subtitle:"理解商业的本质",spineClass:"spine-biz",badgeClass:"badge-biz",badgeLabel:"商业观"},
+{id:8,icon:"🏛️",name:"人文与哲学",subtitle:"文明的基石——思想与经典",spineClass:"spine-human",badgeClass:"badge-human",badgeLabel:"人文观"},
+{id:9,icon:"🎯",name:"领导力与影响力",subtitle:"影响他人的艺术与科学",spineClass:"spine-lead",badgeClass:"badge-lead",badgeLabel:"领导力"},
+{id:10,icon:"⭐",name:"实践与总结",subtitle:"将知识转化为行动",spineClass:"spine-sum",badgeClass:"badge-sum",badgeLabel:"实践课"},
+];
+function getSpineClass(m){return MODULES[m-1].spineClass}
+function renderBooks(filter){
+var query=(filter||'').toLowerCase();
+var shelves=document.getElementById('shelves');
+shelves.innerHTML='';
+MODULES.forEach(function(mod){
+var modCourses=COURSES.filter(function(c){if(c.m!==mod.id)return false;if(query&&c.t.toLowerCase().indexOf(query)===-1&&c.d.toLowerCase().indexOf(query)===-1&&c.a.toLowerCase().indexOf(query)===-1)return false;return true});
+if(modCourses.length===0)return;
+var shelf=document.createElement('div');
+var spineCls=getSpineClass(mod.id);
+shelf.innerHTML='<div class="shelf-title">'+mod.icon+' <span class="badge '+mod.badgeClass+'">'+mod.badgeLabel+'</span> '+mod.subtitle+'</div><div class="shelf-row"><div class="books-grid" id="mod-'+mod.id+'"></div></div>';
+shelves.appendChild(shelf);
+var grid=document.getElementById('mod-'+mod.id);
+modCourses.forEach(function(c){
+var key='zy-lesson'+c.n;
+var isDone=localStorage.getItem(key)==='done';
+var book=document.createElement('div');
+book.className='book-wrap';
+book.innerHTML='<a class="book-link" href="lesson'+c.n+'.html"></a><div class="book '+spineCls+'"><div class="book-spine">'+c.t.replace(/《|》/g,'')+'</div><div class="book-pages"></div><div class="book-cover"><div class="cover-num">'+(c.n<10?'0':'')+c.n+'</div><div class="cover-title">'+c.t+'</div><div class="cover-author">'+c.a+'</div></div></div><div class="book-check'+(isDone?' done':'')+'" onclick="toggleCheck(event,'+c.n+')" title="标记已读">'+(isDone?'✓':'')+'</div>';
+grid.appendChild(book);
+});
+});
+updateProgress();
+}
+function toggleCheck(evt,n){evt.preventDefault();evt.stopPropagation();var key='zy-lesson'+n;var el=evt.target;if(localStorage.getItem(key)==='done'){localStorage.removeItem(key);el.classList.remove('done');el.textContent=''}else{localStorage.setItem(key,'done');el.classList.add('done');el.textContent='✓'}updateProgress()}
+function updateProgress(){var done=0;for(var i=1;i<=100;i++)if(localStorage.getItem('zy-lesson'+i)==='done')done++;var pct=Math.round(done/100*100);document.getElementById('progressFill').style.width=pct+'%';document.getElementById('progressPct').textContent=done;document.getElementById('progressDone').textContent=pct+'%'}
+function filterCourses(){renderBooks(document.getElementById('searchInput').value)}
+window.addEventListener('scroll',function(){var h=document.documentElement,s=h.scrollTop||document.body.scrollTop,t=h.scrollHeight-h.clientHeight,p=t>0?Math.min(100,Math.round(s/t*100)):0;document.getElementById('scrollBar').style.width=p+'%'});
+(function initParticles(){var container=document.getElementById('particles');for(var i=0;i<35;i++){var p=document.createElement('div');p.className='particle';var size=Math.random()*2.5+1;p.style.width=size+'px';p.style.height=size+'px';p.style.left=Math.random()*100+'%';p.style.setProperty('--dur',(Math.random()*12+10)+'s');p.style.setProperty('--delay',(Math.random()*12)+'s');container.appendChild(p)}})();
+renderBooks();
+</script>
+</body>
+</html>
